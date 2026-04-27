@@ -13,7 +13,7 @@ import {
 export default function ReimaginedGraduation() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMounted, setIsMounted] = useState(false);
-  
+
   // --- STATE UNTUK GALERI ---
   const [showAll, setShowAll] = useState(false);
   const galleryImages = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -149,22 +149,31 @@ export default function ReimaginedGraduation() {
 
       {/* SECTION 3: REIMAGINED GALLERY WITH "VIEW ALL" */}
       <section className="py-32 bg-[#FCFAFA] overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 mb-12 flex justify-between items-end">
+        <div className="max-w-7xl mx-auto px-6 mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
           <div>
             <p className="text-[#C5A059] text-[10px] tracking-[0.4em] uppercase font-bold mb-2">Our Journey</p>
-            <h3 className="text-4xl font-serif italic text-[#333]">Galeri Kenangan</h3>
+            <h3 className="text-4xl md:text-5xl font-serif italic text-[#333]">Galeri Kenangan</h3>
           </div>
 
-          <button 
+          {/* Tombol Toggle Lihat Semua yang Diperbesar */}
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => setShowAll(!showAll)}
-            className="flex items-center gap-2 text-[10px] font-black tracking-widest uppercase text-[#581010] hover:opacity-70 transition-opacity"
+            className="flex items-center gap-3 px-6 py-3 bg-white border-2 border-[#581010] rounded-full text-[12px] font-black tracking-widest uppercase text-[#581010] hover:bg-[#581010] hover:text-white transition-all duration-300 shadow-md shadow-[#581010]/10"
           >
             {showAll ? (
-              <><Layout size={14} /> Kembali ke Slide</>
+              <>
+                <Layout size={18} />
+                <span>Kembali ke Slide</span>
+              </>
             ) : (
-              <><Grid size={14} /> Lihat Semua</>
+              <>
+                <Grid size={18} />
+                <span>Lihat Semua Foto</span>
+              </>
             )}
-          </button>
+          </motion.button>
         </div>
 
         <div className="relative px-6">
@@ -181,9 +190,10 @@ export default function ReimaginedGraduation() {
                 {galleryImages.map((i) => (
                   <motion.div key={i} whileHover={{ y: -15 }} className="min-w-[300px] md:min-w-[450px] snap-center">
                     <div className="aspect-[16/10] bg-gray-100 rounded-[2.5rem] overflow-hidden shadow-2xl shadow-black/5 group">
-                      <img 
-                        src={`https://images.unsplash.com/photo-1523050853064-886918823f6d?q=80&w=800&sig=${i}`} 
-                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700" 
+                      <img
+                        src={`https://images.unsplash.com/photo-1523050853064-886918823f6d?q=80&w=800&sig=${i}`}
+                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
+                        alt="Gallery"
                       />
                     </div>
                   </motion.div>
@@ -207,9 +217,10 @@ export default function ReimaginedGraduation() {
                     className="group"
                   >
                     <div className="aspect-square bg-gray-100 rounded-[2rem] overflow-hidden shadow-sm border border-gray-100">
-                      <img 
-                        src={`https://images.unsplash.com/photo-1523050853064-886918823f6d?q=80&w=800&sig=${i}`} 
-                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500" 
+                      <img
+                        src={`https://images.unsplash.com/photo-1523050853064-886918823f6d?q=80&w=800&sig=${i}`}
+                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                        alt="Gallery Grid"
                       />
                     </div>
                   </motion.div>
